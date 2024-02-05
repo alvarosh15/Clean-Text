@@ -15,7 +15,7 @@ export default function Options() {
 
   return (
     <div className="flex flex-row pb-6 text-white">
-      <a href="" className="px-4">
+      <a href="https://github.com/alvarosh15/Clean-Text" className="px-4">
         Github
       </a>
       <p className="cursor-default"> | </p>

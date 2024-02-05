@@ -8,6 +8,6 @@ It is made with nextJS and tailwindCSS, it aims to provide you with a nice writi
 - [x]  Autosave changes to local storage
 - [x]  Download .md directly
 - [x]  Lines, words and characters counters
-- []  Multiple documents at the same time
-- []  Change markdown syntax colors
-- []  Change theme
+- [ ]  Multiple documents at the same time
+- [ ]  Change markdown syntax colors
+- [ ]  Change theme
