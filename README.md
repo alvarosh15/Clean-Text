@@ -10,4 +10,5 @@ It is made with nextJS and tailwindCSS, it aims to provide you with a nice writi
 - [x]  Lines, words and characters counters
 - [ ]  Multiple documents at the same time
 - [ ]  Change markdown syntax colors
+- [ ]  Drag and drop .md documents
 - [ ]  Change theme
