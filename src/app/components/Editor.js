@@ -1,19 +1,23 @@
 "use client";
 import React from "react";
 import { useEffect, useState, useRef } from "react";
-import { parseMarkdown } from "../../../../minimarkdown/Parser.js";
+import { parseMarkdown } from "minimarkdown";
 import "./style.css";
 
-export default function Editor() {
-  const [text, setText] = useState(
-    localStorage.getItem("text") || "Start typing...",
-  );
+export default function Editor({ docs, setDocs, selectedDoc }) {
   useEffect(() => {
-    localStorage.setItem("text", text);
-  }, [text]);
-
+    localStorage.setItem("docs", JSON.stringify(docs));
+  }, [docs]);
+  const doc = docs.find((doc) => doc.title === selectedDoc);
+  const text = doc ? doc.text : "";
   const handleChange = (event) => {
-    setText(event.target.value);
+    const newDocs = docs.map((doc) => {
+      if (doc.title === selectedDoc) {
+        return { ...doc, text: event.target.value };
+      }
+      return doc;
+    });
+    setDocs(newDocs);
   };
 
   const previewRef = useRef(null);
@@ -42,7 +46,9 @@ export default function Editor() {
         <div
           ref={previewRef}
           className="z-0 h-full w-full grow resize-none overflow-y-auto break-words rounded-md bg-black pl-2 text-justify text-white focus:outline-none"
-          dangerouslySetInnerHTML={{ __html: parseMarkdown(text) }}
+          dangerouslySetInnerHTML={{
+            __html: parseMarkdown(text, { preview: true }),
+          }}
         />
       </div>
       <p className="text-white">

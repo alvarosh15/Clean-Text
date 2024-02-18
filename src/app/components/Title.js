@@ -1,23 +1,31 @@
 "use client";
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
-export default function Title() {
-  const [title, setTitle] = useState(localStorage.getItem("title") || "Title");
-
+export default function Title({ docs, setDocs, selectedDoc, setSelectedDoc }) {
   useEffect(() => {
-    localStorage.setItem("title", title);
-  }, [title]);
+    localStorage.setItem("selectedDoc", selectedDoc);
+    localStorage.setItem("docs", JSON.stringify(docs));
+  }, [selectedDoc, docs]);
 
   const handleChange = (event) => {
-    setTitle(event.target.value);
+    const newDocs = docs.map((doc) => {
+      if (doc.title === selectedDoc) {
+        return { ...doc, title: event.target.value };
+      }
+      return doc;
+    });
+
+    setDocs(newDocs);
+
+    setSelectedDoc(event.target.value);
   };
 
   return (
     <h1 className="items-center pb-6 text-3xl text-white">
       <input
         type="text"
-        value={title}
+        value={selectedDoc}
         onChange={handleChange}
         className="bg-black text-center text-white outline-none"
       />
