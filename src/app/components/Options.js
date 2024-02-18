@@ -60,7 +60,7 @@ export default function Options({
   return (
     <div className="flex flex-row pb-6 text-white">
       <a
-        href="https://github.com/alvarosh15/Clean-Text"
+        href="https://github.com/alvarosh15/Cleantext"
         className="text-white px-4"
       >
         Github
