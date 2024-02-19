@@ -9,16 +9,21 @@ export default function Title({ docs, setDocs, selectedDoc, setSelectedDoc }) {
   }, [selectedDoc, docs]);
 
   const handleChange = (event) => {
-    const newDocs = docs.map((doc) => {
-      if (doc.title === selectedDoc) {
-        return { ...doc, title: event.target.value };
-      }
-      return doc;
-    });
+    const isTitleRepeated = docs.filter(
+      (doc) => doc.title === event.target.value
+    );
+    if (isTitleRepeated.length === 0) {
+      const newDocs = docs.map((doc) => {
+        if (doc.title === selectedDoc) {
+          return { ...doc, title: event.target.value };
+        }
+        return doc;
+      });
 
-    setDocs(newDocs);
+      setDocs(newDocs);
 
-    setSelectedDoc(event.target.value);
+      setSelectedDoc(event.target.value);
+    }
   };
 
   return (
