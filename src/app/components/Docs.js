@@ -1,5 +1,4 @@
-"use client";
-import React, { useState } from "react";
+import React from "react";
 import DocTab from "./DocTab";
 
 export default function Docs({ docs, selectedDoc, setSelectedDoc }) {

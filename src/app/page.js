@@ -22,57 +22,69 @@ export default function Home() {
   const [isDragging, setIsDragging] = useState(false);
 
   const handleDragOver = (e) => {
-    e.preventDefault();
-  };
-
-  const handleDragEnter = (e) => {
-    e.preventDefault();
     setIsDragging(true);
+    e.preventDefault();
   };
 
   const handleDragLeave = () => {
     setIsDragging(false);
   };
 
-  const handleDrop = (e) => {
+  const handleDrop = async (e) => {
     e.preventDefault();
     setIsDragging(false);
+    const files = e.dataTransfer.files;
+
+    if (files.length) {
+      const markdownFiles = Array.from(files).filter(
+        (file) => file.name.endsWith(".md") || file.name.endsWith(".txt")
+      );
+
+      for (const file of markdownFiles) {
+        const text = await file.text();
+        const title = file.name.replace(".md", "");
+        const newDoc = { title, text };
+        setDocs((docs) => [...docs, newDoc]);
+        setSelectedDoc(title);
+      }
+    }
   };
 
   return (
     <div
       onDragOver={handleDragOver}
-      onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
-      className={`min-h-screen w-full ${
-        isDragging ? "bg-blue-100 border-blue-500 border-4" : "bg-white"
-      }`}
+      className="flex min-h-screen flex-col items-center justify-stretch bg-black p-16"
     >
-      <main className="flex min-h-screen flex-col items-center justify-stretch bg-black p-16">
-        <Options
-          docs={docs}
-          setDocs={setDocs}
-          selectedDoc={selectedDoc}
-          setSelectedDoc={setSelectedDoc}
-        ></Options>
-        <Title
-          docs={docs}
-          setDocs={setDocs}
-          selectedDoc={selectedDoc}
-          setSelectedDoc={setSelectedDoc}
-        ></Title>
+      <Options
+        docs={docs}
+        setDocs={setDocs}
+        selectedDoc={selectedDoc}
+        setSelectedDoc={setSelectedDoc}
+      ></Options>
+      <Title
+        docs={docs}
+        setDocs={setDocs}
+        selectedDoc={selectedDoc}
+        setSelectedDoc={setSelectedDoc}
+      ></Title>
+      {!isDragging ? (
         <Editor
           docs={docs}
           setDocs={setDocs}
           selectedDoc={selectedDoc}
         ></Editor>
-        <Docs
-          docs={docs}
-          selectedDoc={selectedDoc}
-          setSelectedDoc={setSelectedDoc}
-        ></Docs>
-      </main>
+      ) : (
+        <div className="flex h-96 w-9/12 grow items-center justify-center bg-black mb-8 text-2xl rounded-lg border-2 border-dashed border-teal-400">
+          Drag and drop your .md or .txt file here
+        </div>
+      )}
+      <Docs
+        docs={docs}
+        selectedDoc={selectedDoc}
+        setSelectedDoc={setSelectedDoc}
+      ></Docs>
     </div>
   );
 }
