@@ -3,7 +3,7 @@ import Editor from "./components/Editor";
 import Title from "./components/Title";
 import Options from "./components/Options";
 import Docs from "./components/Docs";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Home() {
   const [selectedDoc, setSelectedDoc] = useState(
@@ -42,7 +42,7 @@ export default function Home() {
 
       for (const file of markdownFiles) {
         const text = await file.text();
-        const title = file.name.replace(".md", "");
+        const title = file.name.replace(/\.md$|\.txt$/, "");
         const newDoc = { title, text };
         setDocs((docs) => [...docs, newDoc]);
         setSelectedDoc(title);
@@ -76,7 +76,7 @@ export default function Home() {
           selectedDoc={selectedDoc}
         ></Editor>
       ) : (
-        <div className="flex h-96 w-9/12 grow items-center justify-center bg-black mb-8 text-2xl rounded-lg border-2 border-dashed border-teal-400">
+        <div className="flex h-96 w-9/12 text-white grow items-center justify-center bg-black mb-8 text-2xl rounded-lg border-2 border-dashed border-teal-400">
           Drag and drop your .md or .txt file here
         </div>
       )}
