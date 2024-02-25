@@ -22,4 +22,3 @@ Looking ahead, Cleantext is planning to introduce even more features to enrich y
 
 ## Bugs
 - You can add a file with the same name as another existing file causing it to be the same "file", acting as if they were the same, and overwriting the existing one.
-- Sometimes the 
