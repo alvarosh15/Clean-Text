@@ -1,9 +1,9 @@
 "use client";
-import Editor from "./components/Editor";
-import Title from "./components/Title";
-import Options from "./components/Options";
-import Docs from "./components/Docs";
-import React, { useEffect, useState } from "react";
+import Editor from "./_components/Editor";
+import Title from "./_components/Title";
+import Options from "./_components/Options";
+import Docs from "./_components/Docs";
+import { useState } from "react";
 
 export default function Home() {
   const [selectedDoc, setSelectedDoc] = useState(
@@ -14,7 +14,7 @@ export default function Home() {
     JSON.parse(localStorage.getItem("docs")) || [
       {
         title: "Untitled",
-        text: "Start typing...",
+        text: "",
       },
     ]
   );
@@ -55,28 +55,24 @@ export default function Home() {
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
-      className="flex min-h-screen flex-col items-center justify-stretch bg-black p-16"
+      className="flex flex-col h-dvh items-center bg-black p-4 md:p-12"
     >
       <Options
         docs={docs}
         setDocs={setDocs}
         selectedDoc={selectedDoc}
         setSelectedDoc={setSelectedDoc}
-      ></Options>
+      />
       <Title
         docs={docs}
         setDocs={setDocs}
         selectedDoc={selectedDoc}
         setSelectedDoc={setSelectedDoc}
-      ></Title>
+      />
       {!isDragging ? (
-        <Editor
-          docs={docs}
-          setDocs={setDocs}
-          selectedDoc={selectedDoc}
-        ></Editor>
+        <Editor docs={docs} setDocs={setDocs} selectedDoc={selectedDoc} />
       ) : (
-        <div className="flex h-96 w-9/12 text-white grow items-center justify-center bg-black mb-8 text-2xl rounded-lg border-2 border-dashed border-teal-400">
+        <div className="flex h-96 w-9/12 text-white grow items-center justify-center bg-black mb-8 p-2 text-2xl rounded-lg border-2 border-dashed border-teal-400">
           Drag and drop your .md or .txt file here
         </div>
       )}
@@ -84,7 +80,7 @@ export default function Home() {
         docs={docs}
         selectedDoc={selectedDoc}
         setSelectedDoc={setSelectedDoc}
-      ></Docs>
+      />
     </div>
   );
 }

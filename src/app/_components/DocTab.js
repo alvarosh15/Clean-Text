@@ -5,8 +5,8 @@ export default function DocTab({ title, onClick, selectedDoc }) {
       onClick={() => onClick(title)}
     >
       <p
-        className={`p-2 rounded-lg transition-all duration-250 ease-in-out ${
-          selectedDoc === title ? "bg-slate-500" : "bg-transparent"
+        className={`p-2 rounded-lg transition-all md:text-xl duration-250 ease-in-out ${
+          selectedDoc === title ? "bg-sky-800" : "bg-transparent"
         }`}
       >
         {title}

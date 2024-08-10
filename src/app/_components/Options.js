@@ -34,7 +34,7 @@ export default function Options({
 
     const doc = {
       title: `Untitled ${nextDocNumber}`,
-      text: "Start typing...",
+      text: "",
     };
     const newDocs = [...docs, doc];
 
@@ -51,30 +51,31 @@ export default function Options({
     if (newDocs.length > 0) {
       setSelectedDoc(newDocs[0].title);
     } else {
-      const newDoc = { title: "Untitled", text: "Start typing..." };
+      const newDoc = { title: "Untitled", text: "" };
       setDocs([newDoc]);
       setSelectedDoc(newDoc.title);
     }
   };
 
   return (
-    <div className="flex flex-row pb-6 text-white">
+    <div className="flex flex-row pb-6 gap-2 text-center text-sm md:text-xl text-white">
       <a
         href="https://github.com/alvarosh15/Cleantext"
-        className="text-white px-4"
+        className="text-white"
+        target="_blank"
       >
         Github
       </a>
       <p className="cursor-default"> | </p>
-      <p onClick={handleClickSave} className="cursor-pointer px-4">
+      <p onClick={handleClickSave} className="cursor-pointer">
         Save on disk
       </p>
       <p className="cursor-default"> | </p>
-      <p onClick={handleClickNew} className="cursor-pointer px-4">
+      <p onClick={handleClickNew} className="cursor-pointer">
         New document
       </p>
       <p className="cursor-default"> | </p>
-      <p onClick={handleClickDelete} className="cursor-pointer px-4">
+      <p onClick={handleClickDelete} className="cursor-pointer">
         Delete document
       </p>
     </div>

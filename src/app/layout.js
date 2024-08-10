@@ -1,7 +1,7 @@
-import { Cutive_Mono } from "next/font/google";
+import { Space_Mono } from "next/font/google";
 import "./globals.css";
 
-const cutive_mono = Cutive_Mono({
+const inter = Space_Mono({
   weight: "400",
   subsets: ["latin"],
   display: "swap",
@@ -15,7 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={cutive_mono.className}>{children}</body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

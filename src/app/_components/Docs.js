@@ -8,7 +8,7 @@ export default function Docs({ docs, selectedDoc, setSelectedDoc }) {
   };
 
   return (
-    <div className="flex flex-row text-white">
+    <div className="flex flex-wrap justify-center text-white">
       {docs.map((doc, index) => (
         <DocTab
           key={index}

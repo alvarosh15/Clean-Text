@@ -27,13 +27,11 @@ export default function Title({ docs, setDocs, selectedDoc, setSelectedDoc }) {
   };
 
   return (
-    <h1 className="items-center pb-6 text-3xl text-white">
-      <input
-        type="text"
-        value={selectedDoc}
-        onChange={handleChange}
-        className="bg-black text-center text-white outline-none"
-      />
-    </h1>
+    <input
+      type="text"
+      value={selectedDoc}
+      onChange={handleChange}
+      className="w-11/12 bg-black pb-4 md:pb-6 text-2xl md:text-4xl text-center text-white outline-none"
+    />
   );
 }
