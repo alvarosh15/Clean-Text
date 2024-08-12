@@ -4,7 +4,7 @@ Cleantext is a minimalist and straightforward web editor designed specifically f
 
 Built with Next.js and TailwindCSS, this project aims to provide you with a pleasant and distraction-free writing experience. It integrates a custom Markdown parser, developed to ensure optimal compatibility and a smooth user experience: https://github.com/alvarosh15/Minimarkdown
 
-![Screenshot of cleantext](./images/img.jpeg)
+![Screenshot of cleantext](./images/img.png)
 
 
 ## Features
